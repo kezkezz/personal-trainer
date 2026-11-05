@@ -7,3 +7,13 @@ export function getCustomers() {
             return response.json();
         })
 }
+
+export function deleteCustomer(url: string) {
+    return fetch(url, { method: "DELETE" })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Something went wrong in deletion");
+            }
+            return response.json();
+        })
+}
