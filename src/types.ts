@@ -18,3 +18,11 @@ export type CustomerData = {
         }
     }
 }
+
+export type TrainingData = {
+    id: number;
+    date: string;
+    duration: number;
+    activity: string;
+    customer: CustomerData;
+}

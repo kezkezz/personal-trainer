@@ -61,7 +61,7 @@ export default function UpdateCustomer(props: UpdateCustomerProps) {
   return (
     <>
       <IconButton onClick={handleClickOpen}>
-        <EditIcon color="warning" />
+        <EditIcon color="info" />
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>

@@ -72,7 +72,9 @@ function CustomerList() {
 
     return(
         <>
-            <AddCustomer fetchCustomers={fetchCustomers} />
+            <div style={{ display: "flex", justifyContent: "flex-start"}}>
+                <AddCustomer fetchCustomers={fetchCustomers} />
+            </div>
             <div style={{width: "95%", height: 800, marginTop: 10}}>
                 <DataGrid
                     rows={customers ||[]}
