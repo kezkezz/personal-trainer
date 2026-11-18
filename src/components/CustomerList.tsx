@@ -27,6 +27,7 @@ function CustomerList() {
         {
             field: "edit",
             headerName: " ",
+            disableExport: true,
             renderCell: (params: GridRenderCellParams) =>
                 <UpdateCustomer fetchCustomers={fetchCustomers} customer={params.row} />
         },
@@ -34,6 +35,7 @@ function CustomerList() {
         {
             field: "delete",
             headerName: " ",
+            disableExport: true,
             renderCell: (params: GridRenderCellParams) =>
                 <IconButton onClick={() => handleOpenDeleteDialog(params.row._links.self.href)}>
                     <DeleteIcon color= "error" />
@@ -82,6 +84,9 @@ function CustomerList() {
                     getRowId={row => row._links.self.href}
                     autoPageSize
                     disableRowSelectionOnClick
+
+                    // Saadaan csv export
+                    showToolbar
                 />
             </div>
 

@@ -84,7 +84,7 @@ export default function AddTraining(props: AddTrainingProps) {
             </Button>
 
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>New Training</DialogTitle>
+                <DialogTitle color="info">New Training</DialogTitle>
 
                 <TrainingForm
                     training={training}

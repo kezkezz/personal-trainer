@@ -22,6 +22,7 @@ function App() {
       <Box sx={{ display: "flex", alignItems: "center", gap: 3, mb: 2}}>
         <Link to={"/"}>Customer List</Link>
         <Link to={"/TrainingList"}>Training List</Link>
+        <Link to={"/Calendar"}>Calendar</Link>
       </Box>
     </nav>
       <Outlet />

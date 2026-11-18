@@ -65,7 +65,7 @@ return (
         </Button>
 
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>New Customer</DialogTitle>
+            <DialogTitle color='info'>New Customer</DialogTitle>
             <CustomerForm customer={customer} setCustomer={setCustomer} />
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
