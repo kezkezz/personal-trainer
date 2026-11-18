@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { CustomerData } from '../types';
 import { DataGrid } from '@mui/x-data-grid';
 import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
-import { getCustomers, deleteCustomer } from '../customerapi';
+import { getCustomers, deleteCustomer } from '../api/customerapi';
 import IconButton  from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Snackbar from '@mui/material/Snackbar';

@@ -14,6 +14,5 @@ export function deleteCustomer(url: string) {
             if (!response.ok) {
                 throw new Error("Something went wrong in deletion");
             }
-            return response.json();
-        })
+        });
 }

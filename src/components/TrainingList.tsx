@@ -8,6 +8,8 @@ import Snackbar from '@mui/material/Snackbar';
 import { DialogActions, DialogContent, Dialog, DialogTitle } from '@mui/material';
 import { Button } from '@mui/material';
 import dayjs from "dayjs";
+import { getTrainings, deleteTraining } from '../api/trainingsapi';
+import AddTraining from './AddTraining';
 
 
 function TrainingList() {
@@ -16,13 +18,13 @@ function TrainingList() {
 
     const columns: GridColDef[] = [
         {
-        field: "customerName", headerName: "Customer", flex: 1, valueGetter: (value, row) =>
+        field: "customerName", headerName: "Customer", flex: 1, valueGetter: (_value, row) =>
             `${row.customer.firstname} ${row.customer.lastname}`
         },
 
         {
-            field: "date", headerName: "Date", flex: 1, valueFormatter: (value) =>
-            dayjs(value).format("DD.MM.YYYY HH:mm")
+            field: "date", headerName: "Date", flex: 1, valueFormatter: (_value) =>
+            dayjs(_value).format("DD.MM.YYYY HH:mm")
         },
 
         { field: "activity", headerName: "Activity", flex: 1},
@@ -37,22 +39,19 @@ function TrainingList() {
         }
     ];
 
-    useEffect(() => {
-        fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/gettrainings")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error when fetching trainings");
-            }
+     const fetchTrainings = () => {
+            getTrainings()
+                .then(data => setTrainings(data))
+                .catch(error => console.error(error))
+        }
 
-            return response.json();
-        })
-        .then(data => setTrainings(data))
-        .catch(error => console.error(error))
+    useEffect(() => {
+        fetchTrainings();
     }, []);
 
 
     // Yes / No dialogi confirmaatio asiakkaan poistoa varten
-    const [selectedId, setSelectedId] = useState<number | null>();
+    const [selectedId, setSelectedId] = useState<number | null>(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     const handleOpenDeleteDialog = (id: number) => {
@@ -66,28 +65,24 @@ function TrainingList() {
     };
 
     const handleDelete = () => {
-    if (selectedId === null) return;
+        if (selectedId === null) return;
 
-    fetch(`https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings/${selectedId}`, {
-        method: "DELETE"
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error when deleting training");
-            }
+        const url = `${import.meta.env.VITE_API_URL}trainings/${selectedId}`;
 
-            setTrainings(current =>
-                current?.filter(training => training.id !== selectedId) ?? []
-            );
-
-            setSnackbarOpen(true);
-            handleCloseDeleteDialog();
-        })
-        .catch(error => console.error(error));
-};
+        deleteTraining(url)
+            .then(() => {
+                fetchTrainings();
+                setSnackbarOpen(true);
+                handleCloseDeleteDialog();
+            })
+            .catch(error => console.error(error));
+    };
 
     return(
             <>
+                <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                    <AddTraining fetchTrainings={fetchTrainings} />
+                </div>
                 <div style={{ width: "95%", height: 800, marginTop: 10 }}>
                     <DataGrid
                         rows={trainings || []}
