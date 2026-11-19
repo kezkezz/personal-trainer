@@ -65,7 +65,7 @@ export default function UpdateCustomer(props: UpdateCustomerProps) {
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Update Customer</DialogTitle>
+        <DialogTitle color='info'>Update Customer</DialogTitle>
         <CustomerForm customer={customer} setCustomer={setCustomer} />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

@@ -2,7 +2,7 @@ import { EventCalendar } from '@mui/x-scheduler/event-calendar';
 import type { SchedulerEvent } from '@mui/x-scheduler/models';
 import dayjs from "dayjs";
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { getTrainings } from '../api/trainingsapi';
 import type { TrainingData } from '../types';
 

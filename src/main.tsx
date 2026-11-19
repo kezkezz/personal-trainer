@@ -2,13 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { createHashRouter, RouterProvider } from 'react-router'
 import CustomerList from './components/CustomerList.tsx'
 import TrainingList from './components/TrainingList.tsx'
 import Calendar from './components/Calendar.tsx'
+import Statistics from './components/Statistics.tsx'
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "Calendar",
         element: <Calendar />,
+      },
+      {
+        path: "Statistics",
+        element: <Statistics />,
       }
     ]
   },
